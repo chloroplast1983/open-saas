@@ -1,0 +1,26 @@
+phpfpm:
+  tty: true
+  image: registry-internal.cn-hangzhou.aliyuncs.com/marmot/phpfpm-7.0:1.0
+  volumes_from:
+  - datacontainer
+  stdin_open: true
+  container_name: saas-open-phpfpm
+
+datacontainer:
+  tty: true
+  image: registry-internal.cn-hangzhou.aliyuncs.com/saas/saas-open
+  command:
+  - bash
+  - sync-config.sh
+  volumes:
+  - /var/www/html
+  stdin_open: true
+
+service:
+  tty: true
+  links:
+  - "phpfpm"
+  image: registry-internal.cn-hangzhou.aliyuncs.com/marmot/nginx-phpfpm-saas:1.1
+  volumes_from:
+  - datacontainer
+  stdin_open: true

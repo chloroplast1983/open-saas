@@ -1,0 +1,15 @@
+nginx:
+ image: "registry.cn-hangzhou.aliyuncs.com/marmot/nginx-phpfpm-saas:1.1"
+ ports:
+  - "80:80"
+ links:
+  - "phpfpm"
+ volumes:
+  - ./:/var/www/html/
+ container_name: open.api.saas.com-nginx
+
+phpfpm:
+  image: "registry.cn-hangzhou.aliyuncs.com/marmot/phpfpm-7.0:1.0"
+  volumes:
+   - ./:/var/www/html/
+  container_name: open.api.saas.com-phpfpm

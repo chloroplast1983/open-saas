@@ -1,0 +1,6 @@
+phpfpm:
+  scale: 1
+datacontainer:
+  scale: 1
+service:
+  scale: 1

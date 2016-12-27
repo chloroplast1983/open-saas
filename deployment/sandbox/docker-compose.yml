@@ -1,0 +1,34 @@
+phpfpm:
+  labels:
+    io.rancher.scheduler.affinity:host_label: dev=micro-services
+  tty: true
+  image: registry-internal.cn-hangzhou.aliyuncs.com/marmot/phpfpm-7.0:1.0
+  volumes_from:
+  - datacontainer
+  stdin_open: true
+datacontainer:
+  labels:
+    io.rancher.container.pull_image: always
+    io.rancher.container.start_once: 'true'
+    io.rancher.scheduler.affinity:host_label: dev=micro-services
+  tty: true
+  command:
+  - bash
+  - sync-config.sh
+  - sandbox
+  image: registry-internal.cn-hangzhou.aliyuncs.com/saas/saas-open:VERSION
+  volumes:
+  - /var/www/html/
+  stdin_open: true
+service:
+  ports:
+  - 8011:80/tcp
+  labels:
+    io.rancher.sidekicks: phpfpm,datacontainer
+    io.rancher.scheduler.affinity:host_label: dev=micro-services
+  tty: true
+  image: registry-internal.cn-hangzhou.aliyuncs.com/marmot/nginx-phpfpm-saas:1.1
+  volumes_from:
+  - datacontainer
+  stdin_open: true
+

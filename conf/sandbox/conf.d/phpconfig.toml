@@ -1,0 +1,9 @@
+[template]
+src = "./php.conf.tmpl"
+dest = "/var/www/html/config.php"
+keys = [
+    "/saas/sandbox/open/qide/url",
+    "/saas/sandbox/open/qide/appId",
+    "/saas/sandbox/open/qide/appSecret",
+    "/saas/sandbox/open/qide/exchangeRate"
+]
