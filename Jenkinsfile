@@ -15,14 +15,6 @@ node {
     stage '代码复制黏贴检测'
     sh 'sudo docker exec saas-open-phpfpm vendor/bin/phpcpd ./Application'
     stage '单元测试'
-    timeout(10) {
-        waitUntil {
-            def r = sh script: 'sudo docker logs saas-open-mysql 2>/dev/null | grep \'Ready for start up\'', returnStatus: true
-            return (r == 0)
-        }
-    }
-    sh 'cat database/test.sql | sudo docker exec -i saas-open-mysql /usr/bin/mysql -uroot -p123456'
-    sh 'cat database/database.sql | sudo docker exec -i saas-open-mysql /usr/bin/mysql -uroot -p123456'
     sh 'sudo docker exec saas-open-phpfpm vendor/bin/phpunit'
     stage '发布候选版本'
     //
