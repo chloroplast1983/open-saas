@@ -13,7 +13,7 @@ class QiDeAccountTranslator extends Translator
     public function arrayToObject(array $expression, array $keys = array())
     {
 
-        $account = new Account(new User(), Core::$container->get('open.qide.rate'));
+        $account = new Account(new User(), Core::$container->get('open.qide.exchangeRate'));
         $account->setBalance($expression['HaiMiBalance']);
         $account->getUser()->setSource(USER_SOURCE_QIDE);
         
