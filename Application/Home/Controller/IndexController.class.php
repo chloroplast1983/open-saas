@@ -4,9 +4,6 @@ namespace Home\Controller;
 use System\Classes\Controller;
 use Common\Controller\JsonApiController;
 
-//use PhpAmqpLib\Connection\AMQPStreamConnection;
-//use PhpAmqpLib\Message\AMQPMessage;
-
 class IndexController extends Controller
 {
 
@@ -16,7 +13,7 @@ class IndexController extends Controller
      * @codeCoverageIgnore
      */
     public function index()
-    {
+    {	
         var_dump("Hello World saas open");
         return true;
     }
