@@ -50,11 +50,11 @@ class QiDeAdapter implements IUserAdapter, IUserTradeAdapter
                 'api/user/getuserinfo/',
                 [
                     'query' => [
-                        'sign' => $this->generateToken('user.getuserinfo', array('uid'=>$id)),
+                        'sign' => $this->generateToken('user.getuserinfo', array('sourceId'=>$id)),
                         'app_id'=> Core::$container->get('open.qide.appId'),
                         'time'=> date('Y-m-d H:i:s', time()),
                         'method'=>'user.getuserinfo',
-                        'uid'=>$id
+                        'sourceId'=>$id
                     ]
                 ]
             );
@@ -86,11 +86,11 @@ class QiDeAdapter implements IUserAdapter, IUserTradeAdapter
                 'api/account/getbalance/',
                 [
                     'query' => [
-                        'sign' => $this->generateToken('account.getbalance', array('uid'=>$id)),
+                        'sign' => $this->generateToken('account.getbalance', array('sourceId'=>$id)),
                         'app_id'=> Core::$container->get('open.qide.appId'),
                         'time'=>date('Y-m-d H:i:s', time()),
                         'method'=>'account.getbalance',
-                        'uid'=>$id
+                        'sourceId'=>$id
                     ]
                 ]
             );
@@ -124,11 +124,11 @@ class QiDeAdapter implements IUserAdapter, IUserTradeAdapter
                 'api/account/deduct/',
                 [
                     'query' => [
-                        'sign' => $this->generateToken('account.deduct', array('uid'=>$id,'amount'=>$money)),
+                        'sign' => $this->generateToken('account.deduct', array('sourceId'=>$id,'amount'=>$money)),
                         'app_id'=> Core::$container->get('open.qide.appId'),
                         'time'=> date('Y-m-d H:i:s', time()),
                         'method'=>'account.deduct',
-                        'uid'=>$id,
+                        'sourceId'=>$id,
                         'amount'=> $money
                     ]
                 ]

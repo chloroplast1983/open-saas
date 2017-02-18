@@ -13,7 +13,7 @@ class IndexController extends Controller
      * @codeCoverageIgnore
      */
     public function index()
-    {	
+    {
         var_dump("Hello World saas open");
         return true;
     }
