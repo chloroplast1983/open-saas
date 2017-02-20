@@ -11,7 +11,7 @@ class QiDeUserTranslator extends Translator
     public function arrayToObject(array $expression)
     {
         $user = new User($expression['UId']);
-
+        $user->setUserName($expression['UserName']);
         $user->setCellPhone($expression['Phone']);
         $user->setNickName($expression['NickName']);
         $user->setRealName($expression['RealName']);
