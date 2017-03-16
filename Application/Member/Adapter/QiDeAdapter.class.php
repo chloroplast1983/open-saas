@@ -44,6 +44,8 @@ class QiDeAdapter implements IUserAdapter, IUserTradeAdapter
 
     public function getOne($id)
     {
+        $id = base64_decode($id);
+
         if (!empty($id)) {
             $response = $this->client->request(
                 'GET',
@@ -79,6 +81,7 @@ class QiDeAdapter implements IUserAdapter, IUserTradeAdapter
 
     public function getBalance($id)
     {
+        $id = base64_decode($id);
 
         if (!empty($id)) {
             $response = $this->client->request(
@@ -115,6 +118,8 @@ class QiDeAdapter implements IUserAdapter, IUserTradeAdapter
 
     public function pay($id, $money)
     {
+        $id = base64_decode($id);
+        
         if (!empty($id) && !empty($money)) {
             //根据汇率计算金额
             $money = round($money * Core::$container->get('open.qide.exchangeRate'));
